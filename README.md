@@ -37,3 +37,20 @@ limit: giới hạn số bản ghi lấy ra, mặc định là 300;
 page: phân trang cho dữ liệu;	
 ```
 
+### 2. Api updateConversions
+-Api: `` http://event.adpia.vn/apiv2/updateConversion``;
+-method: POST;
+ #### Authen: 
+ + Token: base64encode(merchant_id:password)
+ + Header('authorization':'Basic {Token}')
+ #### Request
+ ```bash
+- conversion_id: ID conversion trên hệ thống Adpia; //Ưu tiên tìm theo Conversion đầu tiên,nếu không có 
+sẽ tìm theo order code 
+- ocd: Mã đơn hàng trên hệ thống Adpia;  
+- pcd: Mã sản phẩm trên hệ thống Adpia;
+* Nếu không nhập `pcd` sẽ lấy toàn bộ đơn hàng theo ocd
+- status: Trạng thái cập nhật // cancel: hủy, confirm: xác nhận
+- cancel_reason:  Lý do hủy  // Phải nhập khi status=cancel
+* Các đơn hàng đã duyệt hoặc hủy trên hệ thống Adpia sẽ không thay đổi.
+```
