@@ -54,3 +54,33 @@ sẽ tìm theo order code
 - cancel_reason:  Lý do hủy  // Phải nhập khi status=cancel
 * Các đơn hàng đã duyệt hoặc hủy trên hệ thống Adpia sẽ không thay đổi.
 ```
+ #### Response
+ ```bash
+ 1. Lỗi: 
+ - Thông báo lỗi, vd:  Not authorized, Conversion not found
+ 2. Success:
+ {
+    "code": 200,
+    "result": [
+        {
+            "conversion_id": "12000002575860",
+            "order_code": "20190410150306368",
+            "product_code": "prod_b",
+            "update_stat": "Failed",
+            "reason": "Conversion is cancelled"
+        },
+	{
+            "conversion_id": "1200000123860",
+            "order_code": "20190410150306368",
+            "product_code": "prod_a",
+            "update_stat": "cancel success",
+        },
+	{
+            "conversion_id": "120000234575860",
+            "order_code": "20190410150306368",
+            "product_code": "prod_a",
+            "update_stat": "confirm success",
+        }
+    ]
+}
+ ```
