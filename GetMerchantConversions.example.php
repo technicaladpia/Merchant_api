@@ -12,7 +12,7 @@
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	// sent token to encoding base64 contain infor your account 
 	curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-		'token:'.$token)
+		'authorization:Basic '.$token)
 	);
 	$result = curl_exec($curl);
 	curl_close($curl);
