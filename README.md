@@ -79,7 +79,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 | `400` | Bad request |
 | `401` | Authentication failed |
 | `404` | Missing params |
-| `500` | internal server error |
+| `500` | Internal server error |
 
 ### 2. Api updateConversions
 -Api: `` http://event.adpia.vn/apiv2/updateConversion``;
