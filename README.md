@@ -1,41 +1,84 @@
-# merchant_api
-### 1. Api getMerchantConversions
--Api: `` http://event.adpia.vn/apiv2/getMerchantConversions``;
--method: POST;
-- Api này trả về các trường sau:
-```bash
-`sdate`: lấy dữ liệu từ ngày;
-`fdate` :lấy đến ngày;
-`count` :tổng số bản ghi được lấy ra;
-`page`: phân trang
-`status`: trạng thái với 5 trạng thái: 100, 200, 210, 300, 310;
-`data`: {
-	`ymd` : ngày tạo ở dạng string, ví dụ:20190612;
-	`his` : giờ tạo cũng ở dạng string, ví dụ:120302;
-	`conversion_id`;
-	`ocd` : mã đặt hàng;
-	`pcd`: mã sản phẩm;
-	`ccd`: mã của danh mục;
-	`pname`: tên của sản phẩm;
-	`sales` :tổng giá giảm;
-	`cnt` : số;
-	`customer`: tên khách hàng;
-	`ip` : địa chỉ ip đăng nhập; 
+# MERCHANT API
+## 1.GET CONVERSIONS API
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+### Request
+```http
+POST /v2/merchant/get_conversions
+```
+```http
+curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
+    -H "Content-Type: application/json"
+    -d '{"sdate":"20210101", "edate":"20210130", "limit":10, "page":3, "affiliate":"A100041316", "status":"confirm", "ocd":"14678483812"}'
+```
+## Common Request Parameters
+| Parameter | Type | Required | Description |
+| ------ | ------ | ------ | ------ |
+| `sdate` | String | true | Filter orders that have been updated from this date. Format is yyyymmdd. Example: 20210101. |
+| `edate` | String | true | Filter orders that have been updated to this date. Format is yyyymmdd. Example: 20210130. |
+| `limit` | Int | false | Rows return per request. Default 300 |
+| `page` | Int | false | Page return request. Default 1 |
+| `affiliate` | String | false | Affiliate ID generates results |
+| `status` | String | false | State of orders: pending - approve - confirm - reject - cancel |
+| `ocd` | String | false | Order Code : ID of order |
+## Responses
+```javascript
+{
+    "message": "OK",
+    "description": "Success!",
+    "code": 200,
+    "data": {
+        "sdate": "20210101",
+        "edate": "20210130",
+        "count": "4267",
+        "limit": "10",
+        "page": "3",
+        "data": [
+            {
+                "ymd": "20210101",
+                "his": "141012",
+                "conversion_id": "13000008336867",
+                "ocd": "14678483812",
+                "pcd": "31326453",
+                "ccd": "1019",
+                "pname": "COMBO 20 ?ÔI ??a inox b?n ??p",
+                "sales": "59000",
+                "commission": "79",
+                "cnt": "1",
+                "offer_id": "sendo",
+                "aid": "A100041316",
+                "status": "210",
+                "aff_sub": null,
+                "ip": "172.16.2.144"
+            }
+        ]
+    }
 }
-
 ```
- - Api yêu cầu các trường sau:
-```bash
-token: đoạn mã này được mã hóa dạng base64 từ tài khoản và mật khẩu và bắt buộc phải có ,ví dụ: 
-	$token = base64_encode('merchant_id:password'); 
-sdate: giới hạn ngày , ví dụ: 20190612, bắt buộc phải có;
-edate: giới hạn ngày đầu trên, bắt buộc phải có; 
-affiliate: Mã Affiliate phát sinh kết quả;
-status: trạng thái chỉ để lọc kết quả:  100 - Pending, 200/210 - Finished, 300/310 - Cancel;
-order_code: mã đặt hàng lọc kết quả;
-limit: giới hạn số bản ghi lấy ra, mặc định là 300;
-page: phân trang cho dữ liệu;	
-```
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `ymd` | String | Date of order received. Format will be yyyymmdd. |
+| `his` | String | Time of order received. |
+| `conversion_id` | String | Id of single conversion |
+| `ocd` | String | Order code : ID of order | 
+| `pcd` | String | Product code: ID of product |
+| `ccd` | String | Category code: ID of category |
+| `pname` | String | Product name |
+| `sales` | Float64 | The total amount of products. Currency VND |
+| `commission` | Float64 | Commission fee of product. Currency VND |
+| `cnt` | Int | Quantity of product |
+| `offer_id` | String | ID of offer |
+| `aid` | String | Affiliate ID generates order |
+| `status` | String | State of orders: pending - approve - confirm - reject - cancel |
+| `aff_sub` | String | Sub Affiliate ID |
+| `ip` | String | Purchase device ip address |
+## Status Codes
+| Status Code | Description |
+| ------ | ------ |
+| 200 | `OK` |
+| 400 | `Bad request` |
+| 401 | `Authentication failed` |
+| 404 | `Missing params` |
+| 500 | `internal server error` |
 
 ### 2. Api updateConversions
 -Api: `` http://event.adpia.vn/apiv2/updateConversion``;
