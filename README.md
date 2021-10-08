@@ -8,6 +8,7 @@ POST /v2/merchant/get_conversions
 ```http
 curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
     -H "Content-Type: application/json"
+    -H "Authorization: Basic $(echo -n username:password | base64)"
     -d '{"sdate":"20210101", "edate":"20210130", "limit":10, "page":3, "affiliate":"A100041316", "status":"confirm", "ocd":"14678483812"}'
 ```
 ### Common Request Parameters
