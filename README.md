@@ -75,11 +75,11 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 ### Status Codes
 | Status Code | Description |
 | ------ | ------ |
-| 200 | `OK` |
-| 400 | `Bad request` |
-| 401 | `Authentication failed` |
-| 404 | `Missing params` |
-| 500 | `internal server error` |
+| `200` | OK |
+| `400` | Bad request |
+| `401` | Authentication failed |
+| `404` | Missing params |
+| `500` | internal server error |
 
 ### 2. Api updateConversions
 -Api: `` http://event.adpia.vn/apiv2/updateConversion``;
