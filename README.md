@@ -1,6 +1,7 @@
 # MERCHANT API
 ## Table of contents
-[1.GET CONVERSIONS API](#menu1)
+- [1.GET CONVERSIONS API](#menu1)
+- [2.UPDATE CONVERSIONS API](#menu2)
 <a name="menu1"></a>
 ## 1.GET CONVERSIONS API
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
@@ -84,6 +85,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 | `404` | Missing params |
 | `500` | Internal server error |
 
+<a name="menu2"></a>
 ### 2. Api updateConversions
 -Api: `` http://event.adpia.vn/apiv2/updateConversion``;
 -method: POST;
