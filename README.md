@@ -10,7 +10,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
     -H "Content-Type: application/json"
     -d '{"sdate":"20210101", "edate":"20210130", "limit":10, "page":3, "affiliate":"A100041316", "status":"confirm", "ocd":"14678483812"}'
 ```
-## Common Request Parameters
+### Common Request Parameters
 | Parameter | Type | Required | Description |
 | ------ | ------ | ------ | ------ |
 | `sdate` | String | true | Filter orders that have been updated from this date. Format is yyyymmdd. Example: 20210101. |
@@ -20,7 +20,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 | `affiliate` | String | false | Affiliate ID generates results |
 | `status` | String | false | State of orders: pending - approve - confirm - reject - cancel |
 | `ocd` | String | false | Order Code : ID of order |
-## Responses
+### Responses
 ```javascript
 {
     "message": "OK",
@@ -71,7 +71,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 | `status` | String | State of orders: pending - approve - confirm - reject - cancel |
 | `aff_sub` | String | Sub Affiliate ID |
 | `ip` | String | Purchase device ip address |
-## Status Codes
+### Status Codes
 | Status Code | Description |
 | ------ | ------ |
 | 200 | `OK` |
