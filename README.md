@@ -1,6 +1,6 @@
 # MERCHANT API
 ## 1.GET CONVERSIONS API
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)]
+![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 ### Request
 ```http
 POST /v2/merchant/get_conversions
