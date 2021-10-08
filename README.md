@@ -1,9 +1,9 @@
 # MERCHANT API
 ## Table of contents
-> - ✨[1.GET CONVERSIONS API](#menu1)
-> - ✨[2.UPDATE CONVERSIONS API](#menu2)
+> <sub>✨[1. GET CONVERSIONS API](#menu1)</sub><br />
+> <sub>✨[2. UPDATE CONVERSIONS API](#menu2)</sub>
 <a name="menu1"></a>
-## 1.GET CONVERSIONS API
+## 1. GET CONVERSIONS API
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 ### Request
 ```http
