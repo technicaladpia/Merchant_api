@@ -45,7 +45,7 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
                 "ocd": "14678483812",
                 "pcd": "31326453",
                 "ccd": "1019",
-                "pname": "COMBO 20 ?ÔI ??a inox b?n ??p",
+                "pname": "COMBO 20 ĐÔI Đũa inox bền đẹp",
                 "sales": "59000",
                 "commission": "79",
                 "cnt": "1",
