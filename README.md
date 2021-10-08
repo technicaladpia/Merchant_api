@@ -86,50 +86,40 @@ curl -X POST https://api.adpia.vn/v2/merchant/get_conversions
 | `500` | Internal server error |
 
 <a name="menu2"></a>
-### 2. Api updateConversions
--Api: `` http://event.adpia.vn/apiv2/updateConversion``;
--method: POST;
- #### Authen: 
- + Token: base64encode(merchant_id:password)
- + Header('authorization':'Basic {Token}')
- #### Request
- ```bash
-- conversion_id: ID conversion trên hệ thống Adpia; //Ưu tiên tìm theo Conversion đầu tiên,nếu không có 
-sẽ tìm theo order code 
-- ocd: Mã đơn hàng trên hệ thống Adpia;  
-- pcd: Mã sản phẩm trên hệ thống Adpia;
-* Nếu không nhập `pcd` sẽ lấy toàn bộ đơn hàng theo ocd
-- status: Trạng thái cập nhật // cancel: hủy, confirm: xác nhận
-- cancel_reason:  Lý do hủy  // Phải nhập khi status=cancel
-* Các đơn hàng đã duyệt hoặc hủy trên hệ thống Adpia sẽ không thay đổi.
+## 2. UPDATE CONVERSIONS API
+![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
+### Request
+```http
+POST /v2/merchant/update_conversions
 ```
- #### Response
- ```bash
- 1. Lỗi: 
- - Thông báo lỗi, vd:  Not authorized, Conversion not found
- 2. Success:
- {
-    "code": 200,
-    "result": [
-        {
-            "conversion_id": "12000002575860",
-            "order_code": "20190410150306368",
-            "product_code": "prod_b",
-            "update_stat": "Failed",
-            "reason": "Conversion is cancelled"
-        },
-	{
-            "conversion_id": "1200000123860",
-            "order_code": "20190410150306368",
-            "product_code": "prod_a",
-            "update_stat": "cancel success",
-        },
-	{
-            "conversion_id": "120000234575860",
-            "order_code": "20190410150306368",
-            "product_code": "prod_a",
-            "update_stat": "confirm success",
-        }
-    ]
+```http
+curl -X POST https://api.adpia.vn/v2/merchant/update_conversions
+    -H "Content-Type: application/json"
+    -H "Authorization: Basic $(echo -n username:password | base64)"
+    -d '{"ocd":"14424827977", "pcd":"26158215", "status":"reject", "reason":"Policy violation"}'
+```
+### Common Request Parameters
+| Parameter | Type | Required | Description |
+| ------ | ------ | ------ | ------ |
+| `ocd` | String | true | Order Code : ID of order |
+| `pcd` | String | true | Product code: ID of product |
+| `status` | String | true | State of orders: pending - approve - reject |
+| `reason` | String | true/false | Reason for rejecting results. If the status is reject, this field is required |
+### Responses
+```javascript
+{
+    "message": "OK",
+    "description": "Success!",
+    "code": "200",
+    "data": []
 }
- ```
+```
+### Status Codes
+| Status Code | Description |
+| ------ | ------ |
+| `200` | OK |
+| `400` | Bad request |
+| `401` | Authentication failed |
+| `403` | Update faild |
+| `404` | Missing params |
+| `500` | Internal server error |
